@@ -2,6 +2,7 @@ using System;
 
 public class Program
 {
+  
   public static void Main()
   {
     Console.WriteLine("Would you like to play the higher or lower game? (yes/no)");
@@ -9,27 +10,31 @@ public class Program
 
     if ( userInput == "yes" )
     {
-      Guess();
+      Guess(100, 50, 1);
+    }
+    else 
+    {
+    Console.WriteLine("k bye");
     }
   }  
 
-  public static void Guess()
+  public static void Guess(int max, int guess, int min)
   {
-    int max = 100;
-    int guess = max / 2;
+
     Console.WriteLine("Is your number higher of lower than " + guess + "? higher/lower/correct");
     string userInput = Console.ReadLine();
 
     if ( userInput == "lower" ) 
     {
-      guess = guess / 2;
-      Console.WriteLine("Is your number higher of lower than " + guess + "? higher/lower/correct");
-      
+      max = guess - 1 ;
+      guess = (max + min) / 2; 
+      Guess(max, guess, min);
     }
     else if ( userInput == "higher" )
     {
-      guess = (max + guess) / 2;
-      Console.WriteLine("Is your number higher of lower than " + guess + "? higher/lower/correct");
+      min = guess + 1;
+      guess = (min + max) / 2;
+      Guess(max, guess, min);
     }
     else if ( userInput == "correct" )
     {
@@ -40,8 +45,6 @@ public class Program
       Console.WriteLine("bye");
     }
   } 
-
-  
 }
 
 
